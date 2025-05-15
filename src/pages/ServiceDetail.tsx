@@ -12,6 +12,7 @@ interface FAQ {
   answer: string;
 }
 
+
 interface ServiceData {
   title: string;
   description: string;

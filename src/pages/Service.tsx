@@ -1,10 +1,10 @@
 import type React from "react"
 import TrainedAttendants from "../assets/trained-attendants.avif"
-import NursingCare from "../assets/nursing-care.avif"
 import Physiotherapy from "../assets/physiotherapy.avif"
 import Baby from "../assets/baby.avif"
 import CriticalCare from "../assets/critical-care.avif"
 import MedicalEquipment from "../assets/medical-equipment.avif"
+import NursingCare from "../../src/assets/nursing-care.avif"
 
 interface Service {
   id: number

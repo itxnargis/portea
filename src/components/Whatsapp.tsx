@@ -18,7 +18,7 @@ const WhatsAppButton = () => {
   }, []);
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "8076688419"; 
+    const phoneNumber = "918076688419"; 
     const message = "Hello, how can you help me?";
     
     const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

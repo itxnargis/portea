@@ -1,6 +1,6 @@
 import React from "react"
 import About from "../assets/about.png"
-import Journey from "../assets/journey.png"
+import Journey from "../assets/Journey.png"
 import SurenderImage from "../assets/surender.avif"
 
 const AboutPage: React.FC = () => {

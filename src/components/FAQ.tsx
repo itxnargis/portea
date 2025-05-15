@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { ChevronDown, ChevronUp } from "lucide-react"
 
 const faqs = [
   {
@@ -41,11 +42,13 @@ export default function FAQSection() {
   }
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gradient-to-b from-blue-50 to-white">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+            Frequently Asked Questions
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Find answers to common questions about our home healthcare services in Bangalore
           </p>
         </div>
@@ -53,19 +56,34 @@ export default function FAQSection() {
         <div className="max-w-3xl mx-auto">
           <div className="space-y-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="border rounded-md">
+              <div 
+                key={index} 
+                className={`border border-gray-400 rounded-xl shadow-sm transition-all duration-200 ${
+                  openIndex === index ? "border-blue-200 bg-blue-50" : "hover:border-gray-300"
+                }`}
+              >
                 <button
                   onClick={() => toggle(index)}
-                  className="w-full text-left px-4 py-3 font-medium flex justify-between items-center"
+                  className="w-full text-left px-6 py-4 font-medium flex justify-between items-center gap-4"
                 >
-                  {faq.question}
-                  <span className={`transform transition-transform ${openIndex === index ? "rotate-180" : "rotate-0"}`}>
-                    ▼
-                  </span>
+                  <span className="text-lg">{faq.question}</span>
+                  <div className="text-blue-500 flex-shrink-0">
+                    {openIndex === index ? (
+                      <ChevronUp size={20} className="transition-transform duration-300" />
+                    ) : (
+                      <ChevronDown size={20} className="transition-transform duration-300" />
+                    )}
+                  </div>
                 </button>
-                {openIndex === index && (
-                  <div className="px-4 py-3 border-t text-gray-700">{faq.answer}</div>
-                )}
+                <div 
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    openIndex === index ? "max-h-96" : "max-h-0"
+                  }`}
+                >
+                  <div className="px-6 py-4 text-gray-600 border-t border-gray-100">
+                    {faq.answer}
+                  </div>
+                </div>
               </div>
             ))}
           </div>

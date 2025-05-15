@@ -1,17 +1,18 @@
-import TrainedAttendants from "../assets/trained-attendants.avif"
-import NursingCare from "../assets/Nursing.avif"
-import Physiotherapy from "../assets/physiotherapy.avif"
-import Baby from "../assets/baby.avif"
-import CriticalCare from "../assets/critical-care.avif"
-import MedicalEquipment from "../assets/medical-equipment.avif"
+import { useState } from "react";
+import TrainedAttendants from "../assets/trained-attendants.avif";
+import NursingCare from "../assets/Nursing.avif";
+import Physiotherapy from "../assets/physiotherapy.avif";
+import Baby from "../assets/baby.avif";
+import CriticalCare from "../assets/critical-care.avif";
+import MedicalEquipment from "../assets/medical-equipment.avif";
 
 // Define the Service type
 interface Service {
-  id: number
-  title: string
-  description: string
-  icon: string
-  link: string
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  link: string;
 }
 
 // Create services array
@@ -58,62 +59,71 @@ const services: Service[] = [
     icon: MedicalEquipment,
     link: "/services/medical-equipment",
   },
-]
+];
 
-// Card component to replace the UI library's Card
-const Card = ({ className, children }: { className?: string, children: React.ReactNode }) => {
+const ServiceCard = ({ service }: { service: Service }) => {
   return (
-    <div className={`bg-white border rounded-lg shadow-sm ${className || ""}`}>
-      {children}
-    </div>
-  )
-}
-
-// CardContent component to replace the UI library's CardContent
-const CardContent = ({ className, children }: { className?: string, children: React.ReactNode }) => {
-  return (
-    <div className={className || ""}>
-      {children}
-    </div>
-  )
-}
+    <a 
+      href={service.link} 
+      className="group block h-full transform transition-all duration-300 hover:scale-105"
+    >
+      <div className="h-full rounded-xl bg-white p-6 shadow-md transition-all duration-300 hover:shadow-xl">
+        <div className="flex flex-col items-center">
+          <div className="mb-4 h-20 w-20 overflow-hidden rounded-full bg-blue-50 p-4">
+            <img
+              src={service.icon}
+              alt={service.title}
+              className="h-full w-full object-contain"
+            />
+          </div>
+          <h3 className="mb-3 text-xl font-bold text-gray-800 group-hover:text-teal-600">
+            {service.title}
+          </h3>
+          <p className="text-center text-gray-600">{service.description}</p>
+        </div>
+      </div>
+    </a>
+  );
+};
 
 const Services = () => {
+  const [showAll, setShowAll] = useState(false);
+  const displayedServices = showAll ? services : services.slice(0, 3);
+
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container px-4 md:px-6 mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Medical Services Offered At Home</h2>
-          <p className="text-gray-600 max-w-3xl mx-auto">
-            Portea Medical offers a variety of healthcare services in the comfort of our patient's homes in
-            Bangalore including:
+    <section className="bg-gradient-to-b from-blue-50 to-white py-16">
+      <div className="container mx-auto px-4">
+        <div className="mb-12 text-center">
+          <h2 className="mb-2 text-4xl font-bold text-gray-900">
+            <span className="relative inline-block">
+              <span className="relative z-10">Healthcare Services At Home</span>
+              <span className="absolute bottom-2 left-0 z-0 h-3 w-full bg-blue-200 opacity-40"></span>
+            </span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            Professional medical care delivered right to your doorstep in Bangalore
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <a key={service.id} href={service.link} className="group">
-              <Card className="h-full transition-all duration-200 hover:shadow-md group-hover:border-teal-500">
-                <CardContent className="p-6">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-16 h-16 mb-4 relative">
-                      <img
-                        src={service.icon || "/placeholder.svg"}
-                        alt={service.title}
-                        className="object-contain w-full h-full"
-                      />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-teal-600">{service.title}</h3>
-                    <p className="text-gray-600">{service.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </a>
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {displayedServices.map((service) => (
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
+        
+        {!showAll && (
+          <div className="mt-12 text-center">
+            <button
+              onClick={() => setShowAll(true)}
+              className="rounded-full bg-teal-600 px-8 py-3 font-medium text-white shadow-md transition-all duration-300 hover:bg-teal-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+            >
+              View More Services
+            </button>
+          </div>
+        )}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Services
+export default Services;

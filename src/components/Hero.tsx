@@ -5,6 +5,7 @@ import Testimonials from "./Testimonials";
 import BookAppointment from "./BookAppointment";
 import FAQSection from "./FAQ";
 import Banner from "../assets/banner.avif";
+import WhatsAppButton from "./Whatsapp";
 
 export default function Hero() {
   return (
@@ -58,6 +59,7 @@ export default function Hero() {
           <Testimonials />
           <BookAppointment />
           <FAQSection />
+          <WhatsAppButton />
     </section>
 
 

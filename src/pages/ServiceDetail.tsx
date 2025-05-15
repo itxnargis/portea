@@ -7,7 +7,6 @@ import Baby from "../assets/baby.avif"
 import CriticalCare from "../assets/critical-care.avif"
 import MedicalEquipment from "../assets/medical-equipment.avif"
 
-// Define service data type
 interface FAQ {
   question: string;
   answer: string;
@@ -26,7 +25,6 @@ interface Services {
   [key: string]: ServiceData;
 }
 
-// Define service data
 const services: Services = {
   "doctor-consultation": {
     title: "Doctor Consultation at Home",

@@ -1,4 +1,4 @@
-import Care from "../assets/care.avif"
+import Care from "../assets/Care.avif"
 
 // Define the Reason type
 interface Reason {

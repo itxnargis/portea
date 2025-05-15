@@ -1,5 +1,5 @@
 import TrainedAttendants from "../assets/trained-attendants.avif"
-import NursingCare from "../assets/nursing-care.avif"
+import NursingCare from "../assets/Nursing.avif"
 import Physiotherapy from "../assets/physiotherapy.avif"
 import Baby from "../assets/baby.avif"
 import CriticalCare from "../assets/critical-care.avif"
